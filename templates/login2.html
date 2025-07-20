@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | CodeXIntern</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="https://i.ibb.co/JRM3yPnX/cxi-trans.png">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- particles.js -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background-color: #000;
+      overflow: hidden;
+      cursor: url('https://i.ibb.co/pH56N31/red-1.png'), auto;
+    }
+    body.clicked {
+      cursor: url('https://i.ibb.co/hFMB80Bt/clicked.png'), auto;
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      top: 0;
+      left: 0;
+    }
+
+    .container-box {
+      position: relative;
+      z-index: 1;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-box {
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      max-width: 400px;
+      width: 100%;
+      color: white;
+      text-align: center;
+    }
+
+    .login-box img.logo {
+      max-width: 100px;
+      margin-bottom: 1rem;
+      object-fit: cover;
+      border-radius: 50%;     /* makes it round */
+      border: 2px solid #ccc;
+    }
+
+    .login-box h3 {
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: #fff;
+    }
+
+    .form-label {
+      font-weight: 500;
+      text-align: left;
+      display: block;
+    }
+
+    .form-control {
+      background-color: rgba(255, 255, 255, 0.9);
+      border: none;
+      border-radius: 10px;
+    }
+
+    .form-control:focus {
+      box-shadow: 0 0 0 2px #2a5298;
+    }
+
+    .btn-custom {
+      background: #fff;
+      color: #2a5298;
+      font-weight: 600;
+      border-radius: 10px;
+      transition: 0.3s ease;
+    }
+
+    .btn-custom:hover {
+      background: #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Particles Background -->
+  <div id="particles-js"></div>
+
+  <!-- Login Box -->
+  <div class="container-box">
+    <div class="login-box">
+      <img src="https://i.ibb.co/1tHWtWs8/cxi.png" alt="Logo" class="logo">
+      <h3>Student Login</h3>
+      {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+      {% endif %}
+      <form method="POST" action="/login">
+        <div class="mb-3 text-start">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" name="email" placeholder="e.g. student@domain.com" required>
+        </div>
+        <div class="mb-4 text-start">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-control" name="phone" placeholder="Your phone number" required>
+        </div>
+        <button type="submit" class="btn btn-custom w-100">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Particle Config Script -->
+  <script>
+    document.body.addEventListener("mousedown", () => {
+      document.body.classList.add("clicked");
+    });
+
+    // On mouse up, remove the clicked class
+    document.body.addEventListener("mouseup", () => {
+      document.body.classList.remove("clicked");
+    });
+  particlesJS("particles-js", {
+    "particles": {
+      "number": {
+        "value": 300,
+        "density": {
+          "enable": true,
+          "value_area": 800
+        }
+      },
+      "color": {
+        "value": "#ffffff"
+      },
+      "shape": {
+        "type": "circle"
+      },
+      "opacity": {
+        "value": 0.5,
+        "random": false
+      },
+      "size": {
+        "value": 5,
+        "random": true
+      },
+      "line_linked": {
+        "enable": true,
+        "distance": 150,
+        "color": "#ffffff",
+        "opacity": 0.4,
+        "width": 1
+      },
+      "move": {
+        "enable": true,
+        "speed": 2,
+        "direction": "none",
+        "random": false,
+        "straight": false,
+        "out_mode": "out",
+        "bounce": false
+      }
+    },
+    "interactivity": {
+      "detect_on": "window",  // ✅ FIXED: Use "window" not "canvas"
+      "events": {
+        "onhover": {
+          "enable": true,
+          "mode": "repulse"
+        },
+        "onclick": {
+          "enable": true,
+          "mode": "push"
+        },
+        "resize": true
+      },
+      "modes": {
+        "repulse": {
+          "distance": 120,
+          "duration": 0.4
+        },
+        "push": {
+          "particles_nb": 4
+        }
+      }
+    },
+    "retina_detect": true
+  });
+</script>
+</body>
+</html>

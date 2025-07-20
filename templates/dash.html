@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard | CodeXIntern</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="https://i.ibb.co/JRM3yPnX/cxi-trans.png">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- particles.js -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Outfit', sans-serif;
+      background-color: #000;
+      color: #fff;
+      height: 100%;
+      overflow: hidden;
+      cursor: url('https://i.ibb.co/pH56N31/red-1.png'), auto;  
+    }
+    body.clicked {
+      cursor: url('https://i.ibb.co/hFMB80Bt/clicked.png'), auto;
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      top: 0;
+      left: 0;
+    }
+
+    .dashboard-wrapper {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    .dash-box {
+      background-color: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 2.5rem;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      animation: fadeIn 1s ease;
+    }
+
+    .dash-box h2 {
+      font-weight: 700;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .dash-box p {
+      font-size: 1.1rem;
+    }
+
+    .btn-download {
+      background: #fff;
+      color: #11998e;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border-radius: 12px;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-download:hover {
+      background: #e2e2e2;
+      color: #0f786f;
+      transform: scale(1.03);
+    }
+
+    .btn-logout {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      border-radius: 8px;
+      border: 1px solid white;
+      padding: 0.5rem 1rem;
+      color: white;
+      background: transparent;
+      transition: 0.3s ease;
+    }
+
+    .btn-logout:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 576px) {
+      .dash-box {
+        padding: 2rem 1.5rem;
+      }
+
+      .dash-box h2 {
+        font-size: 1.7rem;
+      }
+
+      .btn-download {
+        font-size: 1rem;
+        padding: 0.6rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Particles Background -->
+  <div id="particles-js"></div>
+
+  <!-- Dashboard Content -->
+  <div class="dashboard-wrapper">
+    <div class="dash-box">
+      <h2>Welcome, {{ name }}</h2>
+      <p>Your offer letter is ready! Click below to download:</p>
+      <a href="{{ drive_link }}" class="btn btn-download mt-3" target="_blank">📄 Download Offer Letter</a>
+      <div>
+        <a href="/logout" class="btn btn-logout">Logout</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Particle Config -->
+  <script>
+    document.body.addEventListener("mousedown", () => {
+      document.body.classList.add("clicked");
+    });
+
+    // On mouse up, remove the clicked class
+    document.body.addEventListener("mouseup", () => {
+      document.body.classList.remove("clicked");
+    });
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 300,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#ffffff"
+        },
+        "shape": {
+          "type": "circle"
+        },
+        "opacity": {
+          "value": 0.5
+        },
+        "size": {
+          "value": 3,
+          "random": true
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 120,
+          "color": "#ffffff",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 1.5,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out"
+        }
+      },
+      "interactivity": {
+        "detect_on": "window",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "repulse"
+          },
+          "resize": true
+        },
+        "modes": {
+          "repulse": {
+            "distance": 120,  // 👈 more close interaction
+            "duration": 0.4
+          }
+        }
+      },
+      "retina_detect": true
+    });
+  </script>
+
+</body>
+</html>
