@@ -5,7 +5,7 @@ app = Flask(__name__)
 app.secret_key = 'aspro1111'
 
 # Load student data
-STUDENT_CSV = 'students.csv'
+STUDENT_CSV = 'flask.csv'
 data = pd.read_csv(STUDENT_CSV)
 
 @app.route('/')
