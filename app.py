@@ -6,12 +6,12 @@ app.secret_key = 'aspro1111'
 
 # Load all 6 CSVs
 courses = {
-    'python': pd.read_excel('python.xlsx'),
-    'ai': pd.read_excel('ai.xlsx'),
-    'frontend': pd.read_excel('frontend.xlsx'),
-    'backend': pd.read_excel('backend.xlsx'),
-    'webdev': pd.read_excel('basic.xlsx'),
-    'c': pd.read_excel('c.xlsx')
+    'python': pd.read_csv('python.csv'),
+    'ai': pd.read_csv('ai.csv'),
+    'frontend': pd.read_csv('frontend.csv'),
+    'backend': pd.read_csv('backend.csv'),
+    'webdev': pd.read_csv('basic.csv'),
+    'c': pd.read_csv('c.csv')
 }
 
 @app.route('/')
