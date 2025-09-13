@@ -6,12 +6,12 @@ app.secret_key = 'aspro1111'
 
 # Load all 6 CSVs
 courses = {
-    'python': pd.read_csv('python.csv'),
-    'ai': pd.read_csv('ai.csv'),
-    'frontend': pd.read_csv('frontend.csv'),
-    'backend': pd.read_csv('backend.csv'),
-    'webdev': pd.read_csv('basicweb.csv'),
-    'c': pd.read_csv('c.csv')
+    'python': pd.read_excel('python.xlsx'),
+    'ai': pd.read_excel('ai.xlsx'),
+    'frontend': pd.read_excel('frontend.xlsx'),
+    'backend': pd.read_excel('backend.xlsx'),
+    'webdev': pd.read_excel('basic.xlsx'),
+    'c': pd.read_excel('c.xlsx')
 }
 
 @app.route('/')
@@ -35,11 +35,11 @@ def login():
 
     # Loop through each course and check if email exists
     for course, df in courses.items():
-        user = df[df['Email'].str.lower() == email]
+        user = df[df['email'].str.lower() == email]
         if not user.empty:
             if not name:
-                name = user.iloc[0]['Name']  # Get name from any matched course
-            link = user.iloc[0]['DriveLink']
+                name = user.iloc[0]['fullname']  # Get name from any matched course
+            link = user.iloc[0]['Link']
             if course == 'python':
                 drive_links['python_link'] = link
             elif course == 'ai':
